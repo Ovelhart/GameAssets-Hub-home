@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameAssets Hub</title>
+  <meta name="theme-color" content="#0f1724">
+
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Variáveis de tema */
+    :root{
+      --bg-1: #071124;
+      --bg-2: #0f1724;
+      --card: #0b1220;
+      --muted: #98a6b8;
+      --accent: #7dd3fc; /* azul claro */
+      --accent-2: #60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 12px;
+      --gap: 1.25rem;
+      --max-width: 1200px;
+    }
+
+    /* Reset simples */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 60%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+      padding: 0 1rem;
+    }
+
+    /* Barra superior (nav) */
+    #barra{
+      position: sticky;
+      top: 0;
+      width: 100%;
+      max-width: 100%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 1.25rem;
+      margin: 0 auto;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+      z-index: 40;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+      border-radius: 0 0 12px 12px;
+      transition: height .25s ease, padding .25s ease;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #barra .left {
+      display:flex;
+      align-items:center;
+      gap: 12px;
+    }
+
+    #barra .logo {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    #barra h3{
+      margin:0;
+      font-weight:700;
+      font-size:1.05rem;
+      color: #e6f6ff;
+      letter-spacing:0.4px;
+    }
+
+    #barra a{
+      color:var(--accent);
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+    }
+
+    #barra a:hover h3{
+      color:var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    /* Container principal e grid de jogos */
+    main{
+      max-width: var(--max-width);
+      margin: calc(72px + 2rem) auto 4rem; /* top accounts for navbar */
+      padding: 0 0.5rem;
+    }
+
+    .row{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--gap);
+      align-items: start;
+      justify-items: center;
+    }
+
+    /* Card do jogo */
+    .jogo {
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 22px rgba(2,6,23,0.55);
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s, border-color .28s;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      max-width: 320px;
+    }
+
+    .jogo:focus,
+    .jogo a:focus,
+    .jogo:focus-within {
+      outline: 3px solid rgba(124, 211, 224, 0.12);
+      box-shadow: 0 12px 30px rgba(2,6,23,0.7), 0 0 0 4px rgba(125,211,252,0.06);
+    }
+
+    .jogo:hover{
+      transform: translateY(-8px) scale(1.025);
+      box-shadow: 0 20px 40px rgba(2,6,23,0.7);
+      border-color: rgba(125,211,252,0.14);
+    }
+
+    .jogo img{
+      width:100%;
+      height: 200px;
+      object-fit: cover;
+      display:block;
+      transition: transform .45s ease;
+    }
+
+    .jogo:hover img{
+      transform: scale(1.06);
+    }
+
+    .card-content{
+      padding: 0.9rem 1rem 1.2rem 1rem;
+      display:flex;
+      flex-direction:column;
+      gap:0.5rem;
+    }
+
+    .title {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 0.5rem;
+    }
+
+    .title h1{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:600;
+      color: #e6f6ff;
+      letter-spacing: .2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .meta{
+      font-size:0.82rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Pequeno badge decorativo */
+    .badge{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color: #02243a;
+      font-weight:700;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      font-size:0.78rem;
+      box-shadow: 0 6px 18px rgba(96,165,250,0.12);
+    }
+
+    /* Layout mobile */
+    @media (max-width:560px){
+      #barra{height:64px;padding:0.5rem 0.75rem;}
+      .jogo img{height:160px;}
+      main{margin-top: calc(64px + 1.2rem);}
+    }
+
+  </style>
+</head>
+<body>
+  <header id="barra" role="banner">
+    <div class="left">
+      <a class="logo" href="index.html" aria-label="Ir para a home">
+        <h4 style="border-radius: 5px; background-color: #60a5fa; padding: 5px; height: 36px; width: 36px; align-items: center;" >GH</h4>
+        <h3>GameAssets Hub</h3>
+      </a>
+    </div>
+
+    <nav class="right" aria-label="Navegação principal">
+      <a href="index.html" title="Home">home</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="row" aria-label="Galeria de jogos">
+      <a class="jogo" href="jogo1.html" title="Abrir pou">
+        <img src="imagens/jogo1.webp" alt="Capa do jogo 1">
+        <div class="card-content">
+          <div class="title">
+            <h1>Pou(fan upload)</h1>
+            <span class="badge">Só para uso pessoal</span>
+          </div>
+          <p class="meta">2D • pet • interface</p>
+        </div>
+      </a>
+
+      <!-- Exemplo adicional (duplique conforme necessário) -->
+      <a class="jogo" href="jogo2.html" title="Abrir hill climb racing">
+        <img src="imagens/jogo2.png" alt="Placeholder do jogo">
+        <div class="card-content">
+          <div class="title">
+            <h1>Outro Jogo</h1>
+            <span class="badge">Só para uso pessoal</span>
+          </div>
+          <p class="meta">2D • Carro • interface</p>
+        </div>
+      </a>
+
+    </section>
+  </main>
+</body>
+</html>
