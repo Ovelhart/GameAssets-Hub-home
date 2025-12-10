@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>pou | GameAssets Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#071124">
+
+  <style>
+    :root{
+      --bg-1:#071124; --bg-2:#0f1724; --card:#0b1220;
+      --muted:#98a6b8; --accent:#7dd3fc; --accent-2:#60a5fa;
+      --glass:rgba(255,255,255,0.04); --radius:12px; --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background: linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 60%);
+      color:#e6eef8; -webkit-font-smoothing:antialiased; padding:0 1rem;
+    }
+
+    header#barra{
+      position: sticky; top: 0; z-index:40; display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding:0 1.25rem; height:72px; width:100%; max-width:100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom:1px solid rgba(255,255,255,0.03); backdrop-filter:blur(6px);
+      box-shadow:0 6px 18px rgba(2,6,23,0.6); border-radius:0 0 12px 12px; margin:0 auto;
+    }
+    header a.logo{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
+    header h3{margin:0; font-weight:700; font-size:1.05rem; color:#e6f6ff}
+
+    main{max-width:var(--max-width); margin:calc(72px + 1.5rem) auto 4rem; display:grid; grid-template-columns: 1fr 360px; gap:1.5rem; padding:0 0.5rem;}
+
+    .preview {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius); padding:1rem; border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+    }
+
+    .hero {
+      display:flex; gap:1rem; align-items:flex-start;
+    }
+
+    .hero-main {
+      flex:1; border-radius:10px; overflow:hidden; position:relative; background:#071427;
+      min-height:320px; display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .hero-main img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+
+    .thumbs {
+      width:96px; display:flex; flex-direction:column; gap:0.7rem;
+    }
+    .thumbs button{
+      width:100%; height:72px; border-radius:8px; overflow:hidden; padding:0; border:1px solid rgba(255,255,255,0.03);
+      background:transparent; cursor:pointer;
+    }
+    .thumbs img{width:100%; height:100%; object-fit:cover; display:block; opacity:0.95}
+
+    .asset-title {
+      margin-top:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    }
+    .asset-title h1{margin:0; font-size:1.4rem; font-weight:700}
+    .meta-row{display:flex; gap:0.6rem; align-items:center; color:var(--muted); font-size:0.9rem; margin-top:0.5rem}
+
+    /* Right column: card de download */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius); padding:1rem; border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 10px 30px rgba(2,6,23,0.55); position:sticky; top:84px;
+    }
+
+    .author {
+      display:flex; gap:0.75rem; align-items:center; margin-bottom:0.6rem;
+    }
+    .author img{width:48px; height:48px; border-radius:999px; object-fit:cover; border:2px solid rgba(255,255,255,0.03)}
+    .tags{display:flex; gap:0.4rem; flex-wrap:wrap}
+
+    .tag{background:rgba(255,255,255,0.03); padding:0.22rem 0.5rem; border-radius:999px; color:var(--muted); font-size:0.83rem}
+
+    .badge{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#02243a; padding:0.18rem 0.5rem; border-radius:999px; font-weight:700; font-size:0.78rem}
+
+    .download-section{margin-top:0.8rem}
+    .big-btn{
+      margin-top:0.6rem; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#042a36; font-weight:700; cursor:pointer;
+      border:none; width:100%; padding:0.86rem 1rem; border-radius:10px; font-size:1rem;
+    }
+
+    /* Removed progress bar, rating and extra elements from original version */
+
+    .section{margin-top:1rem; background:transparent; border-radius:8px; padding:0.8rem; border:1px solid rgba(255,255,255,0.02)}
+    .section h3{margin:0 0 0.6rem 0; font-size:1.05rem}
+    .collapse {color:var(--muted); font-size:0.95rem}
+
+    @media (max-width:1000px){
+      main{grid-template-columns: 1fr; margin-top:calc(72px + 1rem)}
+      header#barra{padding:0 0.8rem}
+      .card{position:relative; top:auto}
+      .thumbs{flex-direction:row; width:auto; order:2; margin-top:0.7rem}
+      .hero{flex-direction:column}
+      .thumbs button{height:64px}
+    }
+  </style>
+</head>
+<body>
+  <header id="barra" role="banner">
+    <a class="logo" href="index.html" aria-label="Ir para a home">
+      <h4 style="border-radius: 5px; background-color: #60a5fa; padding: 5px; height: 36px; width: 36px;">GH</h4>
+      <h3>GameAssets Hub</h3>
+    </a>
+
+    <nav aria-label="Ações rápidas">
+      <a class="ghost" href="index.html" style="color:var(--muted); text-decoration:none;">Voltar</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- LEFT: preview + details -->
+    <section class="preview" aria-labelledby="titulo-asset">
+      <div class="hero" role="region" aria-label="Pré-visualizações do asset">
+        <div class="hero-main" id="heroMain">
+          <img id="heroImg" src="imagens/jogo4.webp" alt="Pré-visualização principal do asset">
+        </div>
+
+        <div class="thumbs" role="tablist" aria-orientation="vertical">
+          <button aria-label="Prévia 1" data-src="imagens/jogo4.webp"><img src="imagens/jogo4.webp" alt="Miniatura 1"></button>
+          <button aria-label="Prévia 2" data-src="imagens/jogo4-2.jpg"><img src="imagens/jogo4-2.jpg" alt="Miniatura 2"></button>
+          <button aria-label="Prévia 3" data-src="imagens/jogo4-3.png"><img src="imagens/jogo4-3.png" alt="Miniatura 3"></button>
+        </div>
+      </div>
+
+      <div class="asset-title">
+        <div>
+          <h1 id="titulo-asset">Pacote: Cut The Rope(fan upload)</h1>
+          <div class="meta-row">
+            <div class="tags">
+              <span class="tag">2D</span>
+              <span class="tag">pet</span>
+              <span class="tag">interface</span>
+            </div>
+            <div style="margin-left:8px" class="badge">Só para uso pessoal</div>
+          </div>
+        </div>
+
+        <!-- Avaliação removida conforme pedido -->
+      </div>
+
+      <div class="section" style="margin-top:1rem">
+        <h3>Descrição</h3>
+        <p class="collapse">Pacote de assets descompactada do Cut The Rope tirada do jogo — inclui sons, interface, cenarios, e muito mais, link do site do jogo: <a href="https://www.zeptolab.com/games/cut-the-rope-daily" style="color: #98a6b8;">https://www.zeptolab.com/games/cut-the-rope-daily/</a> .</p>
+      </div>
+
+      <div class="section" style="margin-top:1rem">
+        <h3>Detalhes técnicos</h3>
+        <p class="collapse">Arquivos PNG em tamanhos variados, junto com a fonte do jogo.</p>
+        <ul style="color:var(--muted); margin:0.6rem 0 0 1rem">
+          <li>Formato final disponível: ZIP</li>
+          <li>Tamanho aproximado: 9,83 MB</li>
+          <li>Quantidade de arquivos e pastas: 192 Arquivos, 11 Pastas</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RIGHT: painel de download (simplificado) -->
+    <aside class="card" aria-labelledby="download-card">
+      <div class="author">
+        <img src="imagens/ZeptoLab.jpg" alt="Avatar do autor">
+        <div>
+          <div style="font-weight:700">ZeptoLab</div>
+          <div style="font-size:0.85rem; color:var(--muted)">Publicado em 2025-12-08</div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; gap:0.6rem; align-items:center; margin-top:0.4rem">
+        <div>
+          <div style="color:var(--muted); font-size:0.85rem">Formato</div>
+          <div style="font-weight:700">ZIP (compactado)</div>
+        </div>
+        <div style="text-align:right">
+          <div style="color:var(--muted); font-size:0.85rem">Tamanho</div>
+          <div style="font-weight:700">9,83 MB</div>
+        </div>
+      </div>
+
+      <div class="download-section" id="download-card">
+        <!-- Botão de download funcional.
+             Por padrão a variável downloadUrl definirá qual arquivo é baixado. -->
+        <button class="big-btn" id="downloadBtn" aria-label="Baixar ZIP do asset">Baixar ZIP — 9,83 MB</button>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    // Pequeno carrossel das miniaturas (permanece)
+    document.querySelectorAll('.thumbs button').forEach(btn=>{
+      btn.addEventListener('click', ()=> {
+        const src = btn.dataset.src;
+        const hero = document.getElementById('heroImg');
+        hero.style.opacity = '0.0';
+        setTimeout(()=> {
+          hero.src = src;
+          hero.style.opacity = '1';
+        }, 160);
+      });
+    });
+
+    /*
+      Download funcional:
+      - Por padrão o arquivo a ser baixado é definido em downloadUrl.
+      - Para mudar o arquivo, edite a variável downloadUrl abaixo para o caminho do ZIP no seu servidor.
+      - Para alterar o nome sugerido do arquivo salvo no disco, modifique downloadFilename.
+      - Em servidores configurados corretamente, o atributo 'Content-Disposition' do servidor pode sobrescrever o nome final.
+      - Exemplo de caminhos: 'downloads/tileset.zip', '/assets/tiles/forest_tileset_v1.2.zip', 'https://cdn.example.com/files/asset123.zip'
+    */
+
+    // === CONFIGURAÇÃO: altere aqui o arquivo que será baixado ===
+    const downloadUrl = 'downloads/Cut The Rope.zip'; // caminho relativo/absoluto para o arquivo .zip no servidor
+    const downloadFilename = 'Cut-The-Rope.zip'; // nome sugerido para salvar localmente
+    // ============================================================
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', async () => {
+      // Método 1: disparar um <a download> simples — funciona quando o arquivo está no mesmo domínio
+      // e quando o servidor permite o download direto.
+      // Criamos dinamicamente um link e acionamos o clique.
+      try {
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        // O atributo download funciona melhor para arquivos no mesmo domínio ou se o CORS permitir.
+        a.setAttribute('download', downloadFilename);
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (err) {
+        // fallback: tentar via fetch e salvar como blob
+        console.warn('Download direto falhou, tentando fallback via fetch...', err);
+        try {
+          downloadBtn.disabled = true;
+          downloadBtn.textContent = 'Baixando...';
+          const res = await fetch(downloadUrl, { cache: 'no-cache' });
+          if (!res.ok) throw new Error('Resposta do servidor: ' + res.status);
+          const blob = await res.blob();
+          const blobUrl = URL.createObjectURL(blob);
+          const a2 = document.createElement('a');
+          a2.href = blobUrl;
+          a2.download = downloadFilename;
+          document.body.appendChild(a2);
+          a2.click();
+          a2.remove();
+          // liberar URL
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
+          downloadBtn.textContent = 'Pronto — Iniciado download';
+        } catch (err2) {
+          console.error('Falha no fallback de download:', err2);
+          alert('Não foi possível iniciar o download automaticamente. Abra este URL manualmente:\n' + downloadUrl);
+          downloadBtn.textContent = 'Baixar ZIP — 9,83 MB';
+        } finally {
+          downloadBtn.disabled = false;
+        }
+      }
+    });
+
+    /*
+      Observações e dicas rápidas:
+      - Se você hospedar o ZIP no mesmo servidor/site (pasta "downloads/" como acima),
+        basta colocar o arquivo em downloads/tileset.zip e a variável downloadUrl funcionará.
+      - Se hospedar em outro domínio, verifique CORS: para fetch funcionar é necessário que o servidor remoto
+        permita origem (Access-Control-Allow-Origin). Para o clique direto no <a> pode funcionar sem CORS,
+        mas alguns navegadores ainda podem bloquear dependendo do cabeçalho Content-Disposition.
+      - Para forçar o nome do arquivo no servidor (recomendado para downloads back-end), configure o cabeçalho:
+        Content-Disposition: attachment; filename="nome-do-arquivo.zip"
+      - Para versões diferentes, você pode dinamizar: por exemplo, trocar downloadUrl baseado em um atributo
+        data-download-url no botão ou criar um select que muda a variável antes de clicar.
+    */
+  </script>
+</body>
+</html>
